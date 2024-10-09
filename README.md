@@ -14,6 +14,8 @@ JWT_SECRET=<your_jwt_secret>
 
 EMAIL_USER=<your_email>
 EMAIL_PASS=<your_email_password>
+FRONT_URL=<your_front_url>
+BACKEND_URL=<your_backend_url>
 ```
 
 Start server:
