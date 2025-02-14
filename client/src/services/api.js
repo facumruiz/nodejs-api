@@ -4,7 +4,7 @@
 import axios from 'axios';
 
 // Obtiene la URL de la API desde las variables de entorno
-const API_URL = process.env.REACT_APP_API_URL;
+export const API_URL = process.env.REACT_APP_API_URL;
 
 console.log(API_URL);
 
@@ -49,5 +49,8 @@ export const userApi = {
   deleteUser: (id) => handleRequest('delete', `/user/${id}`),
   updateUserRole: (_id, role) => handleRequest('patch', `/user/${_id}`, { role }),
   requestPasswordReset: (data) => handleRequest('post', '/user/request-password-reset', data),
+  fetchApiDocs: () => handleRequest('get', '/api-docs'),
 };
+
+
 

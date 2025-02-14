@@ -19,9 +19,18 @@ const swaggerOptions = {
             },
         ],
         tags: [
+
             {
-                name: 'User',
-                description: 'Operaciones relacionadas con usuarios',
+                name: 'Login & Auth',
+                description: 'Operaciones para autenticar usuarios mediante credenciales y generar tokens JWT.',
+            },
+            {
+                name: 'Password Recovery',
+                description: 'Operaciones para solicitar la recuperación de la contraseña.',
+            },
+            {
+                name: 'User Management',
+                description: 'Operaciones para gestionar usuarios',
             },
             {
                 name: 'Record',
@@ -52,7 +61,7 @@ const swaggerOptions = {
                 User: {
                     type: 'object',
                     properties: {
-                        name: {
+                        username: {
                             type: 'string',
                             description: 'Nombre del usuario',
                         },

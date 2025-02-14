@@ -4,32 +4,14 @@ import { createUser, confirmEmail, requestPasswordReset, resetPassword, getAllUs
 
 const router = express.Router();
 
-/**
- * @openapi
- * /user:
- *   get:
- *     tags:
- *       - User
- *     summary: Obtener todos los usuarios
- *     responses:
- *       200:
- *         description: Lista de usuarios
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/User'
- *       500:
- *         description: Error del servidor
- */
+
 
 /**
  * @openapi
  * /user/confirm/{token}:
  *   get:
  *     tags:
- *       - User
+ *       - Login & Auth
  *     summary: Confirmar el correo electrónico del usuario
  *     parameters:
  *       - in: path
@@ -53,7 +35,7 @@ router.get('/confirm/:token', confirmEmail);
  * /user/request-password-reset:
  *   post:
  *     tags:
- *       - User
+ *       - Password Recovery
  *     summary: Solicitar recuperación de contraseña
  *     requestBody:
  *       required: true
@@ -73,14 +55,14 @@ router.get('/confirm/:token', confirmEmail);
  *       500:
  *         description: Error del servidor
  */
- router.post('/request-password-reset', requestPasswordReset);
+router.post('/request-password-reset', requestPasswordReset);
 
 /**
  * @openapi
  * /user/reset-password/{token}:
  *   post:
  *     tags:
- *       - User
+ *       - Password Recovery
  *     summary: Restablecer la contraseña
  *     parameters:
  *       - in: path
@@ -109,10 +91,28 @@ router.get('/confirm/:token', confirmEmail);
  *       500:
  *         description: Error del servidor
  */
- router.post('/reset-password/:token', resetPassword);
+router.post('/reset-password/:token', resetPassword);
 
 
-
+/**
+ * @openapi
+ * /user:
+ *   get:
+ *     tags:
+ *       - User Management
+ *     summary: Obtener todos los usuarios
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Error del servidor
+ */
 router.get('/', (req, res, next) => req.app.verifyToken(req, res, next), verifyRole(['admin']), getAllUsers);
 
 /**
@@ -120,7 +120,7 @@ router.get('/', (req, res, next) => req.app.verifyToken(req, res, next), verifyR
  * /user/{id}:
  *   get:
  *     tags:
- *       - User
+ *       - User Management
  *     summary: Obtener un usuario por ID
  *     parameters:
  *       - in: path
@@ -148,7 +148,7 @@ router.get('/:id', getUserById);
  * /user:
  *   post:
  *     tags:
- *       - User
+ *       - Login & Auth
  *     summary: Crear un nuevo usuario
  *     requestBody:
  *       required: true
@@ -171,7 +171,7 @@ router.post('/', createUser);
  * /user/login:
  *   post:
  *     tags:
- *       - User
+ *       - Login & Auth
  *     summary: Autenticación de usuario
  *     requestBody:
  *       required: true
@@ -209,7 +209,7 @@ router.post('/login', validateUser);
  * /user/{id}:
  *   patch:
  *     tags:
- *       - User
+ *       - User Management
  *     summary: Actualizar un usuario por ID
  *     parameters:
  *       - in: path
@@ -245,7 +245,7 @@ router.patch('/:id', updateUser);
  * /user/{id}:
  *   delete:
  *     tags:
- *       - User
+ *       - User Management
  *     summary: Eliminar un usuario por ID
  *     parameters:
  *       - in: path
@@ -262,6 +262,6 @@ router.patch('/:id', updateUser);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:id', deleteUser);
+router.delete('/:id', (req, res, next) => req.app.verifyToken(req, res, next), verifyRole(['admin']), deleteUser);
 
 export default router;

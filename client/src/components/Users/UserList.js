@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { userApi } from '../../api'; // Importa el objeto userApi
+import { userApi } from '../../services/api'; // Importa el objeto userApi
 import { Button, Modal, Form } from 'react-bootstrap';
 import { FaTrash, FaPencilAlt } from 'react-icons/fa'; // Importa los íconos
 

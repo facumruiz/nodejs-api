@@ -1,6 +1,5 @@
-// src/components/Signup.js
 import React, { useState } from 'react';
-import { userApi } from '../../api';
+import { userApi } from '../../services/api';
 import { useNavigate } from 'react-router-dom'; // Cambiado a useNavigate
 import { Link } from 'react-router-dom'; // Importar Link para navegación
 
@@ -30,49 +29,55 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Signup</h2>
-     
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={username}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <div className="alert alert-danger">{error}</div>}
-        <button type="submit" className="btn btn-primary" disabled={loading}>
-          {loading ? 'Registrando...' : 'Signup'}
-        </button>
-             
-      <p className="mt-3">
-        ¿Ya tienes cuenta? <Link to="/login">Inicia sesion aquí</Link> {/* Enlace a la página de registro */}
-      </p>
-      </form>
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+      <div className="card p-4" style={{ maxWidth: '400px', width: '100%' }}>
+        <h2 className="text-center mb-4">Crear Cuenta</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-3">
+            <label htmlFor="username">Nombre:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              value={username}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="email">Correo electrónico:</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="password">Contraseña:</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {error && <div className="alert alert-danger">{error}</div>}
+
+          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+            {loading ? 'Registrando...' : 'Registrarse'}
+          </button>
+        </form>
+
+        <p className="mt-3 text-center">
+          ¿Ya tienes cuenta? <Link to="/login">Inicia sesión aquí</Link>
+        </p>
+      </div>
     </div>
   );
 };

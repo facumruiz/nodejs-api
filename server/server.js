@@ -28,7 +28,7 @@ app.use(cors({
 // Rutas de Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 app.use('/record', recordRoutes);
 //app.use('/record', verifyToken, recordRoutes);
@@ -53,5 +53,6 @@ function verifyToken(req, res, next) {
 app.verifyToken = verifyToken
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });

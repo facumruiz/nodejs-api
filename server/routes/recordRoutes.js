@@ -92,6 +92,12 @@ router.get('/:id', getRecordById);
  *       - Record
  *     summary: Actualizar un registro por ID
  *     parameters:
+ *       - in: header
+ *         name: x-access-token
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token de acceso JWT
  *       - in: path
  *         name: id
  *         required: true
@@ -118,8 +124,8 @@ router.get('/:id', getRecordById);
  *       500:
  *         description: Error del servidor
  */
-router.patch('/:id', updateRecord);
 
+router.patch('/:id', (req, res, next) => req.app.verifyToken(req, res, next), verifyRole(['admin']), updateRecord);
 /**
  * @openapi
  * /record/{id}:
@@ -128,6 +134,12 @@ router.patch('/:id', updateRecord);
  *       - Record
  *     summary: Eliminar un registro por ID
  *     parameters:
+ *       - in: header
+ *         name: x-access-token
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Token de acceso JWT
  *       - in: path
  *         name: id
  *         required: true
@@ -142,6 +154,7 @@ router.patch('/:id', updateRecord);
  *       500:
  *         description: Error del servidor
  */
-router.delete('/:id', deleteRecord);
+
+router.delete('/:id',(req, res, next) => req.app.verifyToken(req, res, next), verifyRole(['admin']), deleteRecord);
 
 export default router;
