@@ -8,7 +8,6 @@ import userRoutes from './routes/userRoutes.js';
 import errorMiddleware from './middleware/errorMiddleware.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './config/swaggerConfig.js';
-import swaggerUiDist from "swagger-ui-dist";
 import { PORT, FRONT_URL } from './config/env.js';
 
 import jwt from 'jsonwebtoken';
@@ -25,9 +24,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'x-access-token'], // Headers permitidos
 }));
-
-// Servir archivos estáticos de Swagger UI (para vercel)
-app.use("/api-docs", express.static(swaggerUiDist.getAbsoluteFSPath()));
 
 
 // Rutas de Swagger
