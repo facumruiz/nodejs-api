@@ -35,7 +35,7 @@ const Home = () => {
             <p>Enlaces de interés:</p>
             <div className="list-group">
                 <a
-                    href={`${API_URL}/api-docs`}
+                    href={"https://nodejs-api-gd4t.onrender.com/api-docs/"}
                     className="list-group-item list-group-item-action text-primary py-1 px-3 fs-6 mb-1 border-0"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -43,7 +43,7 @@ const Home = () => {
                     Link de documentación en Swagger
                 </a>
                 <a
-                    href="https://github.com/tu-repositorio"
+                    href="https://github.com/facumruiz/nodejs-api/tree/main"
                     className="list-group-item list-group-item-action text-primary py-1 px-3 fs-6 mb-1 border-0"
                     target="_blank"
                     rel="noopener noreferrer"
