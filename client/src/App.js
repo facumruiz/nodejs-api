@@ -8,7 +8,7 @@ import NavBar from './components/NavBar/NavBar';
 import PasswordResetRequest from './components/Auth/PasswordResetRequest';
 import ResetPassword from './components/Auth/ResetPassword';
 import Admin from './pages/admin';
-import Home from './components/Home/Home';
+import Home from './pages/Home/Home';
 
 function App() {
   return (

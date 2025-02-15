@@ -1,0 +1,11 @@
+.video-large {
+    width: 100%; 
+    max-width: 1000px; 
+    
+    height: 480px; 
+    object-fit: cover; 
+    object-position: center -70px; 
+    
+    border-radius: 10px;
+  
+}
